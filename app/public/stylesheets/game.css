@@ -1,0 +1,52 @@
+.sidenav {
+    height: 100%;
+    width: 30vw;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.1s;
+}
+
+.sidenav img {
+    max-width: 100%;
+    height: auto;
+}
+
+.other-side {
+    margin-left: 30vw;
+}
+
+.info {
+    position: absolute;
+    top: 47%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    height: 40vw;
+    font-size: 1.5rem;
+}
+
+.board {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    top: 47%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    border: 5px solid black;
+    width: 40vw;
+    height: 40vw;
+    font-size: 1.5rem;
+    transition: 0.1s;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}

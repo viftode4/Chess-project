@@ -1,6 +1,6 @@
 const express = require("express");
 const http = require("http");
-//const websocket = require("ws")
+const websocket = require("ws")
 
 const indexRouter = require("./routes/index");
 
@@ -21,4 +21,4 @@ app.get("/play", indexRouter);
 app.get("/", indexRouter);
 
 const server = http.createServer(app).listen(port);
-//const wss = new websocket.socket({ server });
+const wss = new websocket.Server({ server });
