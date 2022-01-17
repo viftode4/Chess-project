@@ -21,7 +21,7 @@ h1 {
     height: 100%;
     width: 100%;
     z-index: 1000;
-    animation: color-change-opacity 3s forwards;
+    animation: color-change-opacity 2s forwards;
     animation-timing-function: linear;
     background-color: rgb(0, 119, 255);
 }
