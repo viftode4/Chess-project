@@ -2,7 +2,7 @@ document.getElementById("animate").onclick = function() { myFunction() };
 
 function myFunction() {
     document.getElementById("bbody").className = "change";
-    setTimeout(redirect, 2000);
+    setTimeout(redirect, 2500);
     typeWriter();
 }
 
