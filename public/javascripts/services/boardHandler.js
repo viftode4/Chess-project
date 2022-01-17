@@ -2,6 +2,7 @@ import { helper } from "./helper.js";
 import { pieceHandler } from "./pieceHandler.js";
 import {pieceCode} from "../config/pieceCode.js"
 import {pieceImage} from "../config/pieceImage.js"
+import { codePiece } from "../config/codePiece.js";
 
 var board = new Array(9);
 var turn = "white";
@@ -73,6 +74,10 @@ export const boardHandler = {
     },
 
     setFENgame(FEN) {
+        for(var i = 1; i <= 8; ++i) 
+            for(var j = 1; j<=8; ++j)
+                board[i][j].innerHTML = "";
+    
         const rows = FEN.split(/\/| /);
 
         for(var i = 0; i < 8; ++i) { //every row
@@ -81,7 +86,7 @@ export const boardHandler = {
             for(var j = 0; j<rows[i].length; ++j) {
 
                 if(rows[i].charCodeAt(j) >= 48 && rows[i].charCodeAt(j) <= 57)  // the character is a digit
-                    col += rows[i].charCodeAt(j) - 48;
+                    col += rows[i].charCodeAt(j) - 49;
                 else
                     this.addPiece(i + 1,col + j, rows[i].charAt(j)); 
             }
@@ -93,11 +98,52 @@ export const boardHandler = {
             turn = "black";
     },
 
-    highLight(arr) {
+    highLight(arr, piece) {
         arr.forEach(id => {
-            if(document.getElementById(id) !== null)
+            if(document.getElementById(id) !== null && this.legalMove(piece, id))
                 document.getElementById(id).classList.add("highlight");
         });
+    },
+
+    legalMove(from, to) { // check whether this move would result in a check
+        if(from === to)
+            return true;
+
+        var ans;
+        var foo = this.getFENcode();
+
+        this.movePiece(from, to);
+
+        ans = !this.isInCheck(helper.getColor(to));
+
+        this.setFENgame(foo);
+
+        return ans;
+    },
+
+    getFENcode() {
+        var FEN = "";
+        for(var i = 1; i <= 8; ++i) {
+            for(var j = 1; j <= 8; ++j){
+                var cnt=0;
+                while(helper.isInBounds(i, j) && pieceHandler.isSquareFree(i, j)) {
+                    ++cnt;
+                    ++j;
+                }
+                if(cnt > 0) {
+                    FEN += cnt.toString();
+                }
+                if(j > 8) break;
+                var str = helper.getPiece(board[j][i].id);
+                str +="-" + helper.getColor(board[j][i].id);
+
+                FEN += codePiece[str];
+            }
+            if(i != 8)FEN += '/';
+        }
+
+        FEN += " " + turn.charAt(0);
+        return FEN;
     },
 
     clearAllHighlights() {
@@ -119,12 +165,30 @@ export const boardHandler = {
     },
 
     isInCheck(color) {
-        other_color = (color === "white") ? "black":"white";
+        let other_color = (color === "white") ? "black":"white";
 
         for(var i = 1; i <= 8; ++i) 
             for(var j = 1; j <= 8; ++j)
                 if(!pieceHandler.isSquareFree(j, i) && color === helper.getColor(board[i][j].id) && helper.getPiece(board[i][j].id) === "king")
                     return this.isAttacked(board[i][j].id, other_color);
+    },
+
+    isInCheckmate(color) {
+        let other_color = (color === "white") ? "black":"white";
+
+        var ans = true;
+
+        for(var i = 1; i <= 8; ++i) 
+            for(var j = 1; j <= 8; ++j)
+                if(!pieceHandler.isSquareFree(j, i) && color === helper.getColor(board[i][j].id)) {
+                    var moves = pieceHandler.getPieceMoves(board[i][j].id);
+
+                    moves.forEach(element => {
+                        if(document.getElementById(element) !== null && this.legalMove(board[i][j].id, element) && board[i][j].id != element)
+                            ans = false;
+                    });
+                }
+        return ans;
     },
 
     Win (color) {

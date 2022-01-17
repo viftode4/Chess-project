@@ -18,7 +18,7 @@ export const eventHandler = {
         
         if(square.firstChild !== null && square.firstChild.classList.contains(boardHandler.getTurn())){
             selectedPiece = square.id;
-            boardHandler.highLight(pieceHandler.getPieceMoves(selectedPiece));
+            boardHandler.highLight(pieceHandler.getPieceMoves(selectedPiece), selectedPiece);
         }
     }
 }
