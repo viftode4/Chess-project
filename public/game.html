@@ -10,22 +10,30 @@
 </head>
 
 <body>
-    <div class="sidenav">
-        <p><img src="\images\delft-logo.png"></p>
-        <div class="stats">
-            <p>STATS:</p>
+    <main>
+        <div class="sidenav">
+            <h1 class="logo">DELFT<span class="minecraf">></span>CHESS</h1>
+            <div class="stats">
+                <p>STATS:</p>
+            </div>
         </div>
-    </div>
-    <div class="other-side">
-        <div class="info">
-            <div class="numbers"></div>
-            <div class="letters"></div>
-        </div>
+        <div class="vl"></div>
+        <div class="other-side">
+            <div class="info">
+                <div class="numbers"></div>
+                <div class="letters"></div>
+            </div>
 
-        <div class="board">
-
+            <div id="board"></div>
         </div>
-    </div>
+    </main>
+    <script src="javascripts/config.js"></script>
+    <script src="javascripts/statuses.js"></script>
+    <script src="javascripts/messages.js"></script>
+
+    <script src="./javascripts/game-logic.js" defer type="module"></script>
+    <script src="javascripts/interactions.js"></script>
+
 </body>
 
 </html>

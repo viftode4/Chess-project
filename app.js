@@ -4,7 +4,6 @@ const http = require("http");
 const websocket = require("ws")
 
 const indexRouter = require("./routes/index");
-
 const messages = require("./public/javascripts/messages");
 const gameStatus = require("./stats");
 const Game = require("./game");
@@ -23,11 +22,14 @@ app.use(express.static(__dirname + "/public"));
 app.get("/play", indexRouter);
 app.get("/", indexRouter);
 
-const server = http.createServer(app).listen(port);
+const server = http.createServer(app);
 const wss = new websocket.Server({ server });
 
-const websockets = {};
+const websockets = {}; //property: websocket, value: game
 
+/*
+ * regularly clean up the websockets object
+ */
 setInterval(function() {
     for (let i in websockets) {
         if (Object.prototype.hasOwnProperty.call(websockets, i)) {
@@ -153,3 +155,4 @@ wss.on("connection", function connection(ws) {
         }
     });
 });
+server.listen(port);

@@ -90,7 +90,7 @@ game.prototype.setStatus = function(w) {
         );
     }
 };
-
+//TO DO?????
 /**
  * Update the word to guess in this game.
  * @param {string} w word to guess

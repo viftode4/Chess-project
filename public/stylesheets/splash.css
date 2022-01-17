@@ -1,62 +1,46 @@
-.centre-play {
-    /* alligning */
-    margin: 0;
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-@keyframes blur {
-    from {
-        text-shadow: 0px 0px 10px #fff, 0px 0px 10px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 50px #fff, 0px 0px 50px #fff, 0px 0px 50px #7B96B8, 0px 0px 150px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px -10px 100px #7B96B8, 0px -10px 100px #7B96B8;
-    }
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .centre-text {
     font-size: 5vw;
     font-weight: 700;
     text-transform: uppercase;
-    animation: blur .75s ease-out infinite;
-    text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
-    /* alligning */
-    margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    -ms-transform: translate(-50, -30%);
-    transform: translate(-50%, -30%);
-}
-
-.button {
-    display: inline-block;
-    padding: 1vw 7vw;
-    font-size: 3vw;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4bc6ff;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 9px rgb(192, 192, 192);
-}
-
-.button:hover {
-    background-color: #4bc6ff
-}
-
-.button:active {
-    background-color: #4bc6ff;
-    box-shadow: 0 5px rgb(192, 192, 192);
-    transform: translateY(4px);
 }
 
 body {
     font: 1em sans-serif;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/background.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+}
+
+#animate {
+    color: rgb(0, 119, 255);
+}
+
+#animate:hover {
+    cursor: pointer;
+}
+
+.change {
+    animation: color-change 2s forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes color-change {
+    0% {
+        background-color: white;
+    }
+    100% {
+        background-color: rgb(0, 119, 255);
+    }
 }
