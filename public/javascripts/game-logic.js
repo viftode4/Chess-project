@@ -9,7 +9,7 @@ document.addEventListener('click', function( event ) {
         (event.target.classList.contains("square")) ? event.target : event.target.parentElement);
 
     if(boardHandler.isInCheckmate("white"))
-        alert("black won motherfucker");
+        alert("black won");
     if(boardHandler.isInCheckmate("black"))
-        alert("white won pussy ass bithc");
+        alert("white won");
 });
