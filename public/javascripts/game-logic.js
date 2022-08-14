@@ -6,7 +6,8 @@ boardHandler.setFENgame("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"); // sta
 
 document.addEventListener('click', function( event ) {
     eventHandler.click( 
-        (event.target.classList.contains("square")) ? event.target : event.target.parentElement);
+        event.target.classList.contains("square") ? event.target : event.target.parentElement
+    );
 
     if(boardHandler.isInCheckmate("white"))
         alert("black won");
